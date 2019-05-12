@@ -1,5 +1,6 @@
 function plotStressVM(nodes,elem, VonMisses)
 % Plot VonMisses Stress  for each Triangle
+% (c)Numerical Factory
 numElem=size(elem,1);
 figure()
 xmax=max(nodes(:,1));

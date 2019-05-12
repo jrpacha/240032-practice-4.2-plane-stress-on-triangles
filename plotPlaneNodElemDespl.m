@@ -1,4 +1,7 @@
 function plotPlaneNodElemDespl(nodes, elem, u, esc)
+%
+% (c)Numerical Factory
+%
 [num_nod, dim]=size(nodes);
 num_elem=size(elem,1);
 nodu=zeros(num_nod,dim);
@@ -13,5 +16,3 @@ figure()
 plotElements(nodes, elem, 0);
 hold on
 plotElements(nodu, elem, 0);
-
-
