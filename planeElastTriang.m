@@ -3,9 +3,9 @@ close all
 
 %Material properties
 th=0.5;                %thickness (in mm)
-forceLoad=[1.0e3;0.0]; %[Fx; Fy] traction on the right boundary (in N/mm)
+forceLoad=[1.0e3;0.0]; %[Fx; Fy] traction on the right boundary (in N/mm^2)
 E=1.0e+7;              %Young's modulus (in N/mm^2)
-nu=0.25;               %Poisson's retio (adimensional)
+nu=0.25;               %Poisson's ratio (adimensional)
 
 %Define the plane elasticity problem: 
 %modelProblem=1; %plane stress
@@ -77,18 +77,19 @@ u(fixedNod)=0.0;
 
 %Reduced System
 freeNod=setdiff(1:ndim*numNod,fixedNod);
-Fm=F(freeNod)-K(freeNod,fixedNod)*u(fixedNod); %Note: here u(fixedNod)=0,
-                                               %so this is not necessary
-                                               %in this case
-Fm=Fm+Q(freeNod);
+%Fm=F(freeNod)-K(freeNod,fixedNod)*u(fixedNod); %Note: here u(fixedNod)=0,
+                                                %so this is not necessary
+                                                %in this case
+%Fm=Fm+Q(freeNod);
+Qm=Q(freeNod);
 Km=K(freeNod,freeNod);
 
 %Solve the reduced system
-um=Km\Fm;
+um=Km\Qm;
 u(freeNod)=um;
 
 %Post Process
-%Compute the Stress
+%Compute the Stress & Strain
 stress=zeros(numElem,3);
 strain=zeros(numElem,3);
 vonMisses=zeros(numElem,1);

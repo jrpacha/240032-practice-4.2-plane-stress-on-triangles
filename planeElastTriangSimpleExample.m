@@ -8,7 +8,7 @@ nodes=[0,0;
 elem=[1 2 3;
       3 4 1];
 
-numNod=size(nodes,1);
+[numNod,ndim]=size(nodes);
 numElem=size(elem,1);
 
 %plot Elements
@@ -25,9 +25,9 @@ c12=nu*c11;
 c33=0.5*E/(1+nu);
 
 C=[c11, c12, 0; c12, c22, 0; 0, 0, c33];
-K = zeros(2*numNod);
-Q = zeros(2*numNod,1);
-F = zeros(2*numNod,1);
+K = zeros(ndim*numNod);
+Q = zeros(ndim*numNod,1);
+F = zeros(ndim*numNod,1);
 
 for e = 1:numElem
     v1=nodes(elem(e,1),:);
@@ -55,7 +55,7 @@ end
 %Constant traction on the right (Natural BC)
 t0=1.0e3;
 nodLoads=[2,3];
-L23=norm(nodes(2,:)-nodes(3,:));
+L23=norm(nodes(3,:)-nodes(2,:));
 Qe=0.5*t0*L23*th*[1;0;1;0];
 row=[2*nodLoads(1)-1;2*nodLoads(1);2*nodLoads(2)-1;2*nodLoads(2)];
 Q(row)=Q(row)+Qe;
@@ -67,12 +67,15 @@ u(fixedNod)=0.0;
 
 %Reduced System
 freeNod=setdiff(1:2*numNod,fixedNod);
-Fm=F(freeNod)-K(freeNod,fixedNod)*u(fixedNod); %Note: here u(fixedNod)=0
-Fm=Fm+Q(freeNod);
+%Fm=F(freeNod)-K(freeNod,fixedNod)*u(fixedNod); %Note: here u(fixedNod)=0,
+                                                %so this is not necessary
+                                                %in this case
+%Fm=Fm+Q(freeNod);
+Qm=Q(freeNod);
 Km=K(freeNod,freeNod);
 
 %Solve the reduced system
-um=Km\Fm;
+um=Km\Qm;
 u(freeNod)=um;
 
 %Post Process
