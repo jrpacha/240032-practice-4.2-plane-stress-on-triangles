@@ -1,14 +1,14 @@
-function Q=applyLoadsTriangJR(nodes,elem,nodLoads,Q,forceLoad,h)
+function Q=applyLoadsTriangJR(nodes,elem,nodLoads,Q,forceLoad)
 %applyLoadsTriangJR
-% INPUT
-%     nodes: matrix with nodes' position
-%      elem: connectivity
-%         h: thickness (h=1) for strain problems
-% nodLoads: row vector holdong the indexes of loaded nodes 
-%         Q: Loads
-% forceLoad: column vector honding the loads (Fx,Fy) at the boundary.
-%         h: thickness (?)
-% OUTPUT
+%INPUT
+%    nodes: matrix with nodes' position
+%     elem: connectivity
+%        h: thickness (h=1) for strain problems
+% nodLoads: row vector with the indices of the loaded nodes 
+%        Q: Loads
+%forceLoad: column vector with the loads (Fx,Fy)
+%
+%OUTPUT
 %         Q: vector Q at the output is the incoming Q plus with tractions 
 %            (or compressions) added.
 %
@@ -33,9 +33,9 @@ for e=1:size(elem,1)
                 n2=r(1,2);
                 L=norm(nodes(n1,:)-nodes(n2,:));
                 rows=[ndim*n1-1;ndim*n1];
-                Q(rows) = Q(rows) + 0.5*h*L*forceLoad;
+                Q(rows) = Q(rows) + 0.5*L*forceLoad;
                 rows=[ndim*n2-1;ndim*n2];
-                Q(rows) = Q(rows) + 0.5*h*L*forceLoad;
+                Q(rows) = Q(rows) + 0.5*L*forceLoad;
             else
                 error('applyLoadTriangJR: corners not allowed!!!');
             end

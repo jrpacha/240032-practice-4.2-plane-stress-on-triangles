@@ -3,7 +3,7 @@ close all
 
 %Material properties
 th=0.5;                %thickness (in mm)
-forceLoad=[1.0e3;0.0]; %[Fx; Fy] traction on the right boundary (in N/mm^2)
+forceLoad=[1.0e3;0.0]; %[Fx; Fy] traction on the right boundary (in N/mm)
 E=1.0e+7;              %Young's modulus (in N/mm^2)
 nu=0.25;               %Poisson's ratio (adimensional)
 
@@ -69,7 +69,7 @@ end
 %Boundary conditions
 %Natural BC: constant traction on the right boundary
 nodLoads=indRight'; %nodes where the load is applied (transposed)
-Q=applyLoadsTriang(nodes,elem,th,nodLoads,Q,forceLoad);
+Q=applyLoadsTriang(nodes,elem,nodLoads,Q,forceLoad);
 %Essential BC: left boundary fixed
 u=zeros(ndim*numNod,1);
 fixedNod=[ndim*indLeft-1;ndim*indLeft];
