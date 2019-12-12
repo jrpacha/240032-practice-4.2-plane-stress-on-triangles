@@ -62,7 +62,7 @@ plotEdgeConstantBC(vini,vfin,t,ndiv,scale,signe) %
 %
 %Natural B.C.: constant traction on the second edge of the triangle
 %
-Q=-0.5*th*norm(v3-v2)*[0;0;f(1);f(2);f(1);f(2)];
+Q=-0.5*th*norm(v3-v2)*[0;0;f(1);f(2);f(1);f(2)]; %<---- traction force in N/cm^2
 %
 %Essential B.C.
 fixedNod=[];
