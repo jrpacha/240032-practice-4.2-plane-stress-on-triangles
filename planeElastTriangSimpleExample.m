@@ -56,7 +56,7 @@ end
 t0=1.0e3;
 nodLoads=[2,3];
 L23=norm(nodes(3,:)-nodes(2,:));
-Qe=0.5*t0*L23*th*[1;0;1;0];
+Qe=0.5*t0*L23*[1;0;1;0];
 row=[2*nodLoads(1)-1;2*nodLoads(1);2*nodLoads(2)-1;2*nodLoads(2)];
 Q(row)=Q(row)+Qe;
 %Fix displacements (essential BC)
@@ -118,7 +118,7 @@ colorScale='jet';
 valueToShow=u(1:2:end);
 plotContourSolution(nodes,elem,valueToShow,title,colorScale);
 %Strain
-esc=2000;
+esc=100;
 plotPlaneNodElemDespl(nodes, elem, u, esc)
 %Von Misses Stress
-plotStressVM(nodes,elem, VonMisses)
+%plotStressVM(nodes,elem, VonMisses)
