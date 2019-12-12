@@ -53,10 +53,10 @@ end
 
 %Apply BC
 %Constant traction on the right (Natural BC)
-t0=1.0e3;
-nodLoads=[2,3];
+t0=1.0e3; %in N/mm, so we shall not multiply by th. in Qe
+nodLoads=[2,3]; 
 L23=norm(nodes(3,:)-nodes(2,:));
-Qe=0.5*t0*L23*[1;0;1;0];
+Qe=0.5*t0*L23*[1;0;1;0];%<-- We do not multiply by thickness 
 row=[2*nodLoads(1)-1;2*nodLoads(1);2*nodLoads(2)-1;2*nodLoads(2)];
 Q(row)=Q(row)+Qe;
 %Fix displacements (essential BC)
