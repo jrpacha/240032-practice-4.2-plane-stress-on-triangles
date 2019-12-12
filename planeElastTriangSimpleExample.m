@@ -81,6 +81,7 @@ u(freeNod)=um;
 %Post Process
 %Compute the Stress
 stress=zeros(numElem,3);
+VonMisses=zeros(2,1);
 for e=1:numElem
     v1=nodes(elem(e,1),:);
     v2=nodes(elem(e,2),:);
@@ -96,6 +97,7 @@ for e=1:numElem
          2*elem(e,3)-1; 2*elem(e,3)];
     sigma=C*B*u(row);
     stress(e,:)=sigma';
+    VonMisses(e,1)=sqrt(sigma(1)^2+sigma(2)^2-sigma(1)*sigma(2)+3*sigma(3)^2);
 end
 
 %Output
@@ -107,11 +109,16 @@ fprintf('%4d%16.4e%12.4e%12.4e%12.4e\n', ...
     [(1:numNod)',nodes(:,1),nodes(:,2),u(1:2:end),u(2:2:end)]')
 %Stress:
 fprintf('\n%31s\n\n','Stress')
-fprintf('%7s%10s%12s%12s\n','Elem.','SXX','SYY','SXY')
-fprintf('%4d%16.4e%12.4e%12.4e\n',[(1:numElem)',stress]')
+fprintf('%7s%10s%12s%12s%11s\n','Elem.','SXX','SYY','SXY','VM')
+fprintf('%4d%16.4e%12.4e%12.4e%12.4e\n',[(1:numElem)',stress,VonMisses]')
 
 %Graphical output
 title='Desp.X';
 colorScale='jet';
 valueToShow=u(1:2:end);
 plotContourSolution(nodes,elem,valueToShow,title,colorScale);
+%Strain
+esc=2000;
+plotPlaneNodElemDespl(nodes, elem, u, esc)
+%Von Misses Stress
+plotStressVM(nodes,elem, VonMisses)
