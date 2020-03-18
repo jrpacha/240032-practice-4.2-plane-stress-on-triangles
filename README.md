@@ -1,6 +1,4 @@
-# matlabSession-240032_10-12-2019
-
-## Matlab session Tuesday 10-12-2019
+# 240034 Practices 4.1 and 4.2
 
 ### P4.1 - One triangle element: Plane stress example
 ### P4.2 - Triangle mesh: Plane stress example 
