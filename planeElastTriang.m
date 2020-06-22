@@ -29,6 +29,7 @@ plot(nodes(indLeft,1),nodes(indLeft,2),'o','color','black',...
     'markerFaceColor','green','markerSize',7)
 plot(nodes(indRight,1),nodes(indRight,2),'o','color','black',...
     'markerFaceColor','blue','markerSize',7)
+hold off
 
 switch modelProblem
     case 1
@@ -101,7 +102,7 @@ for e=1:numElem
     gamma=-[v2(1)-v3(1),v3(1)-v1(1),v1(1)-v2(1)];
     Area=0.5*det([v1 1; v2 1; v3 1]);
     B=[beta(1), 0, beta(2), 0, beta(3), 0; 
-       0 gamma(1), 0 gamma(2), 0 gamma(3);
+       0, gamma(1), 0 gamma(2), 0 gamma(3);
        gamma(1), beta(1), gamma(2), beta(2), gamma(3), beta(3)]/(2*Area);   
     row=[2*elem(e,1)-1; 2*elem(e,1); ...
          2*elem(e,2)-1; 2*elem(e,2); ...
