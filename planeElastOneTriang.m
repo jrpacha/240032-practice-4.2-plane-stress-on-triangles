@@ -17,7 +17,7 @@ elem=[1,2,3];
 numNod=size(nodes,1);
 ndim=size(nodes,2);
 numElem=size(elem,1);
-plotElements(nodes,elem,1);
+plotElementsOld(nodes,elem,1);
 
 modelProblem=1;
 switch modelProblem

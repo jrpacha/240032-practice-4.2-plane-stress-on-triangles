@@ -13,7 +13,7 @@ numElem=size(elem,1);
 
 %plot Elements
 numbering=1; %=0;
-plotElements(nodes, elem, numbering);
+plotElementsOld(nodes, elem, numbering);
 
 %Real constants
 E=3.e7;    %N/mm^2

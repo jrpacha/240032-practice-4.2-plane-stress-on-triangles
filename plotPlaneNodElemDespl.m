@@ -10,8 +10,6 @@ ymin=min(nodu(:,2));
 xmax=max(nodu(:,1));
 xmin=min(nodu(:,1));
 figure()
-plotElements(nodes, elem, 0);
+plotElementsOld(nodes, elem, 0);
 hold on
-plotElements(nodu, elem, 0);
-
-
+plotElementsOld(nodu, elem, 0);

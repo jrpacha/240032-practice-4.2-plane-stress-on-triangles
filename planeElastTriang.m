@@ -18,7 +18,7 @@ eval('CircleHolemesh01'); %load the mesh
 numElem=size(elem,1);
 
 numbering=0; %=1 shows nodes and element numbering
-plotElements(nodes,elem,numbering);
+plotElementsOld(nodes,elem,numbering);
 
 %Find Boundary points
 indLeft=find(nodes(:,1)<-0.99);
