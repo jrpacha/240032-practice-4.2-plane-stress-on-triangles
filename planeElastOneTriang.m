@@ -124,7 +124,7 @@ fprintf('%7s%8s%12s%12s%11s\n',...
     'Num.Nod.','X','Y','U','V')
 fprintf('%4d%16.4e%12.4e%12.4e%12.4e\n',tableDispl');    
 %Strain:
-tableStrain=[(1:numElem)',strain']
+tableStrain=[(1:numElem)',strain'];
 fprintf('\n%31s\n\n','Strain')
 fprintf('%5s%12s%12s%12s\n','Elem.','EX','EY','EXY')
 fprintf('%4d%16.4e%12.4e%12.4e\n',tableStrain')
