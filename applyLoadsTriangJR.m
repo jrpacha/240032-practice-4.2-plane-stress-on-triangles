@@ -1,4 +1,7 @@
 function Q=applyLoadsTriangJR(nodes,elem,nodLoads,Q,forceLoad)
+%
+% Just for testing purposes. Do not use this!
+%
 %applyLoadsTriangJR
 %INPUT
 %    nodes: matrix with nodes' position

@@ -1,4 +1,4 @@
-function Q=applyLoadsTriang(nodes,elem,nodLoads,Q, forceLoad)
+function Q=applyLoadsTriang(nodes,elem,nodLoads,Q,forceLoad)
 %------------------------------------------------------------------------
 % (c) Numerical Factory 2019
 %------------------------------------------------------------------------

@@ -1,9 +1,9 @@
-function plotEdgeConstantBC(v1,v2,t,ndiv,scale,signe,varargin)
+function plotEdgeConstantBC(v1,v2,t,ndiv,scale,signe)
 %plot traction vector (origin at the edge)
 long=norm(v2-v1);
 edgeVector=(v2-v1)/long;
 normal=[edgeVector(2),-edgeVector(1)];
-f=signe*t*normal;
+f=t*normal;
 %ndiv=10;
 h=1/ndiv;
 j=0;
@@ -18,7 +18,7 @@ U=f(1)*ones(ndiv+1,1);
 V=f(2)*ones(ndiv+1,1);
 hold on;
 %scale=0.2*long/t;
-quiver(X,Y,U,V,scale,varargin{:});
+quiver(X,Y,U,V,scale);
 axis equal;
 hold off;
 %end plot
