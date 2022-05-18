@@ -1,11 +1,11 @@
 function Ke = planeElastTriangStiffMatrixJR(nodes,elem,e,C,h)
 %
-% For testing purposes only. Do not use this
+% For testing purposes only. Do not use this!
 %
 %plaNeElastTriangStiffMatrixJR
 % INPUT
-% nodes: matrix with the nodes' position
-%  elem: connectivity matrix
+% nodes: matrix with the nodes' position (as usual)
+%  elem: connectivity matrix (as usual)
 %     e: element number
 %     C: stress-strain matrix
 %     h: thicknes (for strain problems h = 1)
