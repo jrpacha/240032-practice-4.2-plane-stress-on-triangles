@@ -18,4 +18,5 @@ scale=1;
 signe=1;
 plotEdgeConstantBC(vertexs(2,:),vertexs(3,:),forceLoad,ndiv,scale,signe)
 text(1.51,0,'$\tau = 10^{3}\,\mathrm{N/mm}$','interpreter','LaTeX','fontSize',14)
+hold off
 saveas(gcf,'loadedCircle.png');
