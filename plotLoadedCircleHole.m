@@ -16,7 +16,8 @@ plot(xx,yy,'k-','lineWidth',2)
 ndiv=20;
 scale=1;
 signe=1;
-plotEdgeConstantBC(vertexs(2,:),vertexs(3,:),forceLoad,ndiv,scale,signe)
+plotEdgeConstantBC(vertexs(2,:),vertexs(3,:),forceLoad,ndiv,scale,signe, ...
+    'Color','black','LineWidth',1.5)
 text(1.51,0,'$\tau = 10^{3}\,\mathrm{N/mm}$','interpreter','LaTeX','fontSize',14)
 hold off
 saveas(gcf,'loadedCircle.png');
