@@ -1,4 +1,4 @@
- function Q=applyLoadsTriang(nodes,elem,nodLoads,Q, forceLoad)
+function Q=applyLoadsTriang(nodes,elem,nodLoads,Q, forceLoad)
 %------------------------------------------------------------------------
 % (c) Numerical Factory 2018
 %
@@ -71,4 +71,3 @@ for k=1:numElem
     Q(posit)=Q(posit)+0.5*h*forceLoad; %same (x,y) force on both nodes
   end
 end
-
