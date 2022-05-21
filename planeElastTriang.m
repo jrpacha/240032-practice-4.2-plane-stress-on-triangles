@@ -11,9 +11,11 @@ nu=0.25;               %Poisson's ratio (adimensional)
 %modelProblem=1; %plane stress
 %modelProblem=2; %plane strain (2)
 
-modelProblem=1; %Plane stress
+modelProblem=1 %Plane stress
           
-eval('CircleHolemesh01'); %load the mesh 
+%eval('CircleHolemesh01'); %load the mesh 
+load CircleHolemesh01.mat  %We read the nodes and the connectivity
+                           %matrix from a .mat
 [numNod,ndim]=size(nodes);
 numElem=size(elem,1);
 
@@ -31,6 +33,7 @@ plot(nodes(indRight,1),nodes(indRight,2),'o','color','black',...
     'markerFaceColor','blue','markerSize',7)
 hold off
 
+modelProblem
 switch modelProblem
     case 1
         c11=E/(1-nu^2);
