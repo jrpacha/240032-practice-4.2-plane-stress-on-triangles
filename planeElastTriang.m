@@ -19,7 +19,7 @@ load CircleHolemesh01.mat  %We read the nodes and the connectivity
 [numNod,ndim]=size(nodes);
 numElem=size(elem,1);
 
-numbering=0; %=1 shows nodes and element numbering
+numbering=1; %=1 shows nodes and element numbering
 plotElementsOld(nodes,elem,numbering);
 
 %Find Boundary points
