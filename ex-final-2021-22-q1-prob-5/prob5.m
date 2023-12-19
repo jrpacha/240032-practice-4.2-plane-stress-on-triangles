@@ -45,8 +45,29 @@ plot(nodes(indNodInternalBd,1),nodes(indNodInternalBd,2),...
     'o','MarkerFaceColor','blue','MarkerSize',10)
 hold off
 
+switch modelProblem
+    case 1
+        c11=E/(1-nu^2);
+        c22=c11;
+        c12=nu*c11;
+        c21=c12;
+        c33=E/(2*(1+nu));
+        problemType = 'Plane stress problem';
+    case 2
+        th=1.0;
+        c11=E*(1-nu)/((1+nu)*(1-2*nu));
+        c22=c11;
+        c12=c11*nu/(1-nu);
+        c21=c12;
+        c33=E/(2*(1+nu));
+        problemType = 'Plane strain problem';
+    otherwise
+        error('modelProblem should be 1 (stress) or 2 (strain)');
+end
+C=[c11, c12, 0; c21, c22, 0; 0, 0, c33];
+
 clc
-fprintf('\tPROBLEM 5\n')
+fprintf('\tPROBLEM 5 (%s)\n',problemType)
 %PART (A)
 numNodInternalBd = length(indNodInternalBd);
 avXintBd = sum(nodes(indNodInternalBd,1))/numNodInternalBd;
@@ -56,26 +77,7 @@ fprintf(['Part (a)\n',...
          '*** Hint. The mean of the x-component of the nodes in\n',...
          '*** this boundary is: %.6e\n\n'],numNodInternalBd,avXintBd)
 
-switch modelProblem
-    case 1
-        c11=E/(1-nu^2);
-        c22=c11;
-        c12=nu*c11;
-        c21=c12;
-        c33=E/(2*(1+nu));
-        fprintf('Plane stress problem\n')
-    case 2
-        th=1.0;
-        c11=E*(1-nu)/((1+nu)*(1-2*nu));
-        c22=c11;
-        c12=c11*nu/(1-nu);
-        c21=c12;
-        c33=E/(2*(1+nu));
-        fprintf('Plane strain problem\n')
-    otherwise
-        error('modelProblem should be 1 (stress) or 2 (strain)');
-end
-C=[c11, c12, 0; c21, c22, 0; 0, 0, c33];
+
 
 K=zeros(ndim*numNodes);  
 F=zeros(ndim*numNodes,1);
